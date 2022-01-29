@@ -17,13 +17,24 @@ For usage instructions see:
 
 Report bugs/issues or submit pull requests to <https://github.com/davehadley/ndhistogram/issues>.
 
-Setup the development environment with:
-```
-source setup-environment.sh
-```
-or you may use the 
-[development container](https://code.visualstudio.com/docs/remote/containers)
-inside `.devcontainer/Dockerfile`.
+There are three alternatives for setting up the development environment:
+
+1. `source setup-environment.sh`
+
+2. Use the [development container](https://code.visualstudio.com/docs/remote/containers)
+   inside `.devcontainer/Dockerfile`.
+
+3. If you have [Nix](https://nixos.org/):
+
+   ```
+   nix-shell shell.nix
+   ```
+
+   If you have [direnv](https://direnv.net/), this environment will be
+   automatically initialized when you `cd` into the directory (if you approve
+   this action with `direnv allow`).
+
+   (A Nix flakes version is in the works.)
 
 Before committing any code, please install pre-commit hooks with:
 ```
