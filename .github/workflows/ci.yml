@@ -67,3 +67,16 @@ jobs:
         pip install pre-commit \
         && pre-commit run --all
 
+  nix:
+    name: Nix support
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: cachix/install-nix-action@v13
+      with:
+        nix_path: nixpkgs=channel:nixos-21.11
+    - uses: Swatinem/rust-cache@v1
+    - name: Test in nix develop
+      run: nix --extra-experimental-features nix-command --extra-experimental-features flakes develop -c cargo test --color=always
+    - name: Test in nix-shell
+      run: nix-shell shell.nix --run "cargo test --color=always"
